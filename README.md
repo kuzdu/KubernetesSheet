@@ -82,7 +82,7 @@ YAML: Für die Felder, die unterstützt werden steht die API-Dokumentation onlin
 Oder mittels: `kubectl explain pods|notes|...`
 
 Beispiel-YAML:
-`
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -94,7 +94,7 @@ spec:
     ports: 
     - containerPort: 8080
       protocol: TCP 
-`
+```
 
 YAML erstellen: 
 `kubectl create -f kubia-manual.yaml`
