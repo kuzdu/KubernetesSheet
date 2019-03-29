@@ -132,3 +132,30 @@ A label selector can select resources based on whether the resource
 specify
 
 Filterbar per `kubectl get po -l creation_method=manual`
+
+Ebenfalls kann man auch nodes labeln. Z.B. so
+`kubectl get nodes -l local_kub=true`
+
+Hat man nun mehrere Nodes, kann in der Deployment-YAML-Datei festgelegt werden, dass ein Pod nur in Nodes mit dem entsprechenden Label erstellt wird. 
+BeispieL: Sinnvoll kann dies z.B. sein, wenn Pods Grafikleistungen durchführen und extra ein Node auf GPU ausgelegt ist. 
+
+```
+...
+kind: Pod
+metadata:
+  name: kubia-gpu
+spec:
+  nodeSelector:
+    gpu: "true"
+  containers:
+...
+```
+
+### Annotation
+Ebenfalls gibt es noch Annotations, die sich von den Labeln unterscheiden, da nach ihnen nicht sortiert/gefiltert (...) werden kann. Dafür können Annotations viel mehr Informationen erhalten. Teilweise setzt Kubernetes diese Infos.
+
+Kann man kriegen mittels: `kubectl get pods my_pod -o yaml` 
+Ebenfalls kann man sie manipulieren.
+
+### Namespaces
+Namespaces (Unterschied derzeit noch nicht klar im Gegensatz zu Labels)
