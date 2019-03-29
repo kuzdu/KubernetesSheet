@@ -122,4 +122,13 @@ spec:
     name: kubia
     ports: 
     - containerPort: 8080
-      protocol: TCP ```
+      protocol: TCP 
+```
+
+A label selector can select resources based on whether the resource
+- Contains (or doesn’t contain) a label with a certain key
+- Contains a label with a certain key and value
+- Contains a label with a certain key, but with a value not equal to the one you
+specify
+
+Filterbar per `kubectl get po -l creation_method=manual`
