@@ -107,4 +107,19 @@ Port Forwarding:
 `kubectl port-forward name_of_pod 8888:8080` // Anwendung erreichbar unter localhost:8888
 
 ##Labels
-
+Organisation über Labels, um Pods logisch (horizontal) zu untertrennen.
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-manual-v2
+  labels:
+    creation_method: manual
+    env: prod
+spec:
+  containers:
+  - image: kuzdu/kubia
+    name: kubia
+    ports: 
+    - containerPort: 8080
+      protocol: TCP ```
