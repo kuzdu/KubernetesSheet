@@ -56,3 +56,55 @@ Request geht an den Service -> Service leitet weiter an Pod, der durch einen Rep
 
 Pods sind flüchtig (Anwendung kann crashen). 
 Services haben eine statische IP, weshalb mit diesen kommunziert werden sollte. 
+
+Skalieren per kubectl
+`$ kubectl scale rc kubia --replicas=3`
+replicationcontroller "kubia" scaled
+
+# Kapitel 3
+
+Nodes können zwischeneinander über IP Adressen kommunizieren. (Es existiert kein Network Address Translation)
+
+Nicht jede App braucht einen eigenen Pod. Pods sind recht leichgewichtig und sollten mehrere (containerzed) Apps enthalten. Die Apps in einem Pod sollten logisch und technisch zusammenpassen (ähnlich wie bei Microservices und DDD).
+
+Man könnte auch Frontend und Backend im selben Pod laufen lassen, aber das wiedrum wäre nicht so sinnvoll: Grund ist Skalierung (Kubernetes skaliert Pods, nichts die Apps darin) oder dass die immer auf einem Note laufen würden. (S.59 Action with Kubernetes). UI ist z.B. stateless, während die Datenbank es wohl nicht ist. 
+
+Beispiel für zwei containerized Apps, wenn sie z.B. auf dieselbe Datenbank zugreifen. 
+
+Leitfragen:
+- Do they need to be run together or can they run on different hosts?
+- Do they represent a single whole or are they independent components?
+- Must they be scaled together or individually?
+
+Man könnte auch Frontend und Backend im selben Pod laufen lassen, aber das wiedrum wäre nicht so sinnvoll: Grund ist Skalierung (Kubernetes skaliert Pods, nichts die Apps darin) oder dass die immer auf einem Note laufen würden. (S.59 Action with Kubernetes). UI ist z.B. stateless, während die Datenbank es wohl nicht ist. 
+
+YAML: Für die Felder, die unterstützt werden steht die API-Dokumentation online zur Verfügung: https://kubernetes.io/docs/concepts/overview/kubernetes-api/
+Oder mittels: `kubectl explain pods|notes|...`
+
+Beispiel-YAML:
+`
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-manual
+spec:
+  containers:
+  - image: kuzdu/kubia
+    name: kubia
+    ports: 
+    - containerPort: 8080
+      protocol: TCP 
+`
+
+YAML erstellen: 
+`kubectl create -f kubia-manual.yaml`
+
+Logs sehen vom Pod:
+`kubectl logs name_of_pod`
+`kubectl logs kubia-manual -c name_of_container` //logs eines einzelnen Containers im Pod
+
+Port Forwarding: 
+`kubectl port-forward name_of_pod 8888:8080` // Anwendung erreichbar unter localhost:8888
+
+##Labels
+
