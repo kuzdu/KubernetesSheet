@@ -164,4 +164,8 @@ Mit Namespaces wird ein System unterteilt, was sinnvoll ist, wenn viele User ihr
 
 ### Pods löschen
 
-Löschen von Pods geht via Label oder so   
+Löschen von Pods geht via Labels, Namespaces ... 
+Man kann auch alles erstellte löschen via `kubectl delete all --all`
+
+Die Reihenfolge des Löschens ist wichtig. Besteht z.B. noch ein Replica-Set, wird ein Pod logischerweise neu erstellt. Löscht man ein Deployment wird Pod(+ReplicationController) mitgelöscht.
+
