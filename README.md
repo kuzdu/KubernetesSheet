@@ -169,3 +169,10 @@ Man kann auch alles Erstellte (außer Secrets) löschen via `kubectl delete all 
 
 Die Reihenfolge des Löschens ist wichtig. Besteht z.B. noch ein Replica-Set, wird ein Pod logischerweise neu erstellt. Löscht man ein Deployment wird Pod(+ReplicationController) mitgelöscht.
 
+### Logs einsehen 
+kubectl logs mypod --previous //previous ist optional
+
+### Liveness Probe
+- erreichbar sein
+- innere Werte prüfen, bei denen ein Neustart helfen könnte
+- leichtgewichtige Antwort
