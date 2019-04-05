@@ -158,4 +158,10 @@ Kann man kriegen mittels: `kubectl get pods my_pod -o yaml`
 Ebenfalls kann man sie manipulieren.
 
 ### Namespaces
-Namespaces (Unterschied derzeit noch nicht klar im Gegensatz zu Labels)
+
+Mit Namespaces wird ein System unterteilt, was sinnvoll ist, wenn viele User ihre eigenen Anwendungen haben. Ein Namespace umfasst also z.B. viele Pods. Die Resources müssen nur im Namespace unqiue sein. 
+
+
+### Pods löschen
+
+Löschen von Pods geht via Label oder so   
