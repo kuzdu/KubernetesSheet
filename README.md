@@ -191,3 +191,10 @@ Man kann Pods aus dem RC nehmen, in dem man das Label ändert:
 `kubectl label pod name_des_pods app=foo --overwrite` 
 Sinnvolle Anwendungen können sein, wenn ein einziger Pod falsch läuft und man ihn untersuchen möchte. 
 
+Ändert man dagegen das Label vom RC, dann fallen alle Pods raus. 
+
+Später sind ReplicaSets rausgekommen: Es ist zu erwarten, dass der Replication Controller deprecated wird.
+Man sollte daher immer ReplicaSets verwenden. 
+- Also, for example, a single ReplicationController can’t match pods with the label env=production and those with the label env=devel at the same time. It can only match either pods with the env=production label or pods with the env=devel label. But a sin- gle ReplicaSet can match both sets of pods and treat them as a single group.
+
+Create ReplicaSet `kubectl apply -f kubia-replicaset.yaml ` 
