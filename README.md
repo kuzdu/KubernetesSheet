@@ -172,7 +172,22 @@ Die Reihenfolge des Löschens ist wichtig. Besteht z.B. noch ein Replica-Set, wi
 ### Logs einsehen 
 kubectl logs mypod --previous //previous ist optional
 
+# Kapitel 4 
+
 ### Liveness Probe
 - erreichbar sein
 - innere Werte prüfen, bei denen ein Neustart helfen könnte
 - leichtgewichtige Antwort
+
+
+## Replication Controller
+Replication Controller händeln das Erstellen von mehreren Kopien (Replicas) von Pods. Ist ein Pod gecrashed, wird ein neuer erstellt und der alte verworfen. 
+
+Wer im Replica Controller ist ergibt sich über das *Label*, *pod template* gibt an, wie ein Replica auszusehen hat (Maximum, minimum an replicas)
+
+Ändert man das Label oder das Template, betrifft dies nur die neuen Pods. 
+
+Man kann Pods aus dem RC nehmen, in dem man das Label ändert:
+`kubectl label pod name_des_pods app=foo --overwrite` 
+Sinnvolle Anwendungen können sein, wenn ein einziger Pod falsch läuft und man ihn untersuchen möchte. 
+
